@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INCEL CALCULATOR</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #F2FFEA;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 36px;
+  }
+  .calculator {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .field {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  input {
+    width: calc(100% - 16px);
+    padding: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  #result {
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+  }
+  #result-text {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  #result-number {
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  #result-number.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+  #tier-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003E3F;
+    margin-top: 20px;
+  }
+  #tier-text {
+    font-size: 18px;
+    color: #003E3F;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+  .title-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 20px auto;
+    border-radius: 8px 8px 0 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <img src="https://raw.githubusercontent.com/pencel642/incel-calculator/refs/heads/main/ic_bannerino.png" alt="Calculator Banner" class="title-image">
+
+  <h1>INCEL CALCULATOR</h1>
+
+  <div class="field"><label>Your average uninterrupted eye contact length during conversations in seconds:</label><input type="number" id="D" placeholder=""></div>
+
+  <div class="field"><label>Extraversion score out of 10 in Big 5 psych test:</label><input type="number" id="Psi" placeholder=""></div>
+
+  <div class="field"><label>Agreeableness score out of 10 in Big 5 psych test:</label><input type="number" id="N" placeholder=""></div>
+
+  <div class="field"><label>How many females out of every 10 you come across smile at you (includes pity smiles):</label><input type="number" id="W" placeholder=""></div>
+
+  <div class="field"><label>Height in centimeters:</label><input type="number" id="H" placeholder=""></div>
+
+  <div class="field"><label>Frame (shoulder to hip ratio):</label><input type="number" id="Lambda" placeholder=""></div>
+
+  <div class="field"><label>Facial attractiveness rating on a PLS AU TRM facial area weighted scale to 9 with an added 1 point harmony evaluation (1-10 total rating) or alternatively get an average of the responses on r/truerateme or a PSL knowledgeable forums, do not use a normie rating (almost always inflated or based on a perceived percentile of where they think you stand and doesn't account for different frauding methods):</label><input type="number" id="Omega" placeholder=""></div>
+
+  <div class="field"><label>Eye color number according to the Martin–Schultz scale, no letters:</label><input type="number" id="C" placeholder=""></div>
+
+  <div class="field"><label>Annual income in US dollars:</label><input type="number" id="M" placeholder=""></div>
+
+  <div class="field"><label>How many people actively know you exist:</label><input type="number" id="S" placeholder=""></div>
+
+  <div class="field"><label>Phallus volume: enter the sum of length + girth in centimeters:</label><input type="number" id="U" placeholder=""></div>
+
+  <button onclick="calculate()">CALCULATE</button>
+
+  <div id="result">
+    <div id="result-text"></div>
+    <div id="result-number"></div>
+    <div id="tier-title"></div>
+    <div id="tier-text"></div>
+  </div>
+</div>
+
+<script>
+function calculate() {
+  let D = parseFloat(document.getElementById('D').value) || 0;
+  let Psi = parseFloat(document.getElementById('Psi').value) || 0;
+  let H = parseFloat(document.getElementById('H').value) || 0;
+  let Lambda = parseFloat(document.getElementById('Lambda').value) || 0;
+  let Omega = parseFloat(document.getElementById('Omega').value) || 0;
+  let C = parseFloat(document.getElementById('C').value) || 0;
+  let M = parseFloat(document.getElementById('M').value) || 0;
+  let S = parseFloat(document.getElementById('S').value) || 0;
+  let U = parseFloat(document.getElementById('U').value) || 0;
+  let N = parseFloat(document.getElementById('N').value) || 0;
+  let W = parseFloat(document.getElementById('W').value) || 0;
+
+  let Phi = N + W;
+
+  let A = 3.846 * (
+    1.5 / (1 + Math.exp(-0.2*(D-33))) +
+    (2.5*Math.exp(-Math.pow(U-3.3,2)) + Psi/4)*(Phi/20) +
+    4*(1 - Math.exp(-0.1*(H-140))) +
+    1.5*Math.exp(-Math.pow(Lambda-1.6,2)/(3*Math.pow(0.2,2))) +
+    Omega*0.7 +
+    (20/(1+Math.exp(C-10))+2)*(1/22) +
+    1/(1+Math.exp(-M/100000)) +
+    (1/(1+Math.exp(-(S-50000)/24000)))*(1 - Phi/25)
+  );
+
+  let resultDiv = document.getElementById('result');
+  let resultText = document.getElementById('result-text');
+  let resultNumber = document.getElementById('result-number');
+  let tierTitle = document.getElementById('tier-title');
+  let tierText = document.getElementById('tier-text');
+
+  resultNumber.classList.remove("show");
+  void resultNumber.offsetWidth;
+
+  if(A > 104 || A < 1){
+    resultText.innerText = "Make sure all entered values are correct";
+    resultText.style.color = "#E24545";
+    resultNumber.innerText = "";
+    tierTitle.innerText = "";
+    tierText.innerText = "";
+  } else {
+    resultText.innerText = "YOUR INCEL SCORE IS:";
+    resultText.style.color = "#000FAA";
+    resultNumber.innerText = A.toFixed(1) + " gandys !!!";
+    resultNumber.style.color = "#44B500";
+    resultNumber.classList.add("show");
+
+    if(A <= 20){
+      tierTitle.innerText = "You are a Truecel";
+      tierText.innerText = "You are the genetic dead ends, the legendary ones who the fakecels larp as, the ones for whom ascension is all but a bedtime fairy tale told by normies. Your social footprint is microscopic, and romantic prospects are scarce—but that’s reality, not failure. Self-improvement isn’t about chasing validation; it’s about building a life that works for you. Strengthen your mind, gather knowledge, and become self-sufficient. It isn’t about chasing validation; it’s about crafting a life that doesn’t suck even if nobody else notices. Watch videos or read about people worse off—health-wise, intellect-wise, or wealth-wise—to shift your window of reference and soften the sting of reality. The brain keeps track of where we stand in hierarchies, focusing only on those who have it better inevitably leads to depression holes. Don't be gaslit by normies and looksmaxers into thinking your true value is decided by what the opposite sex thinks you are worth. Don't completely isolate, online friends are real people. Remember: it’s never over until the fat lady sings… but can something that never began really be over?";
+    } else if(A <= 40){
+      tierTitle.innerText = "You are an Incel";
+      tierText.innerText = "You graze the surface of human connection but are quickly reminded of your place in the social hierarchy. Your interactions may feel awkward, and conversations with others may feel like pulling water out of a stone. They seem to not be putting in any effort despite your attempts. You don't get much negative attention but also not much positive either. Do not become a socially isolated node IRL if you still have hope. Explore niches to try and get into a community of something you actually enjoy. If hardmaxxing is not an option, do not underestimate steady small incremental improvements, maybe one day you penetrate into normie territory. It is up to you to calculate if the time investment is worth it. Jestermaxxing at this stage may not produce dividends, so it isn't recommended. True unbiased assessment of your situation and what you may still improve is highly valuable at this stage, but don't fall for grifters. Never take advice of someone more privileged or better looking. Value any meaningful bonds you may still have as forming new ones may be a near impossible task.";
+    } else if(A <= 60){
+      tierTitle.innerText = "You are a Normiecel";
+      tierText.innerText = "You blend into normie society while harboring the incel truth. Life offers occasional romantic opportunity, yet success is scarce. Dating apps and romantic social interactions feel like walking a tightrope. Classic self-improvement: physical fitness, hobbies, going outside, grooming, style, and financial independence may actually give some results for you. Stay alert for unexpected social openings or opportunities as they may happen to you IRL or online, but may be rare. Your efforts set the stage for possible ascension. You are a salmon swimming against the current but have good odds to move forward.";
+    } else if(A <= 80){
+      tierTitle.innerText = "You are a Fakecel";
+      tierText.innerText = "You’re at a level where ascension is tangible. Your focus should be on seeking out opportunities and then seizing them. Your effort will be easily rewarded. Be honest with yourself if you are non-NT in the sense of signaling proper healthy neural circuitry to normies. Remember 99% of non-neurotypical incels believe they are highly neurotypical.";
+    } else {
+      tierTitle.innerText = "You are a Chadcel";
+      tierText.innerText = "You’ve transcended inceldom. You are the Chadcel, Volcel. Your social, physical, and mental capital is strong. Focus on your humility and work on your narcissistic traits which are obvious to many others. If you genuinely struggle romantically, it may be due to location or extreme standards. Otherwise the values were not entered correctly into the equation. Try to be honest for yourself instead of seeking validation from strangers online.";
+    }
+  }
+
+  resultDiv.style.display = "block";
+}
+</script>
+<footer style="text-align:center; margin-top:40px; font-size:10px; color:#555; font-weight:bold;">
+  Made by <a href="https://x.com/truecelforce/" target="_blank" style="color:#000000; text-decoration:none;">truecelforce</a>
+</footer>
+</body>
+</html>
